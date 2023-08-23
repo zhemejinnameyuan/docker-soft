@@ -5,7 +5,7 @@ services:
     ports:
       - "9000:9000"
     volumes:
-      - /Users/zmy/www:/data/www:rw #资源目录，需更改为自己的项目目录
+      - /Users/zhu/www:/data/www:rw #资源目录，需更改为自己的项目目录
       - ./php/php.ini:/usr/local/etc/php/php.ini:ro
       - ./php/php-fpm.conf:/usr/local/etc/php-fpm.conf:ro
       - ../logs/php-fpm:/var/log/php-fpm:rw
@@ -21,7 +21,7 @@ services:
     links:
       - php-fpm:php-fpm
     volumes:
-      - /Users/user/www:/data/www:rw #资源目录，需更改为自己的项目目录
+      - /Users/zhu/www:/data/www:rw #资源目录，需更改为自己的项目目录
       - ./nginx/conf.d:/etc/nginx/conf.d:ro
       - ./nginx/certs/:/etc/nginx/certs
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
