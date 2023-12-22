@@ -23,19 +23,15 @@ RUN apt-get update && apt-get install -y \
 # Copy extensions had downloaded
 COPY ./pkg/redis.tgz /home/redis.tgz
 COPY ./pkg/swoole-4.4.7.tgz /home/swoole.tgz
+COPY ./pkg/mongodb-1.16.2.tgz /home/mongodb.tgz
 
 # Install PECL extensions (Redis)
 RUN pecl install /home/redis.tgz && echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini
 # Install PECL extensions (swoole) 两种方式
 RUN pecl install /home/swoole.tgz && echo "extension=swoole.so" > /usr/local/etc/php/conf.d/swoole.ini
 #RUN pecl install swoole && echo "extension=swoole.so" > /usr/local/etc/php/conf.d/swoole.ini
-
-# Install debug
-#RUN pecl install xdebug   && echo "zend_extension=/usr/local/lib/php/extensions/no-debug-non-zts-20170718/xdebug.so" > /usr/local/etc/php/conf.d/xdebug.ini
-RUN pecl install xdebug
-
 # install Mongodb
-RUN pecl install mongodb && echo "extension=mongodb.so" > /usr/local/etc/php/conf.d/mongodb.ini
+RUN pecl install /home/mongodb.tgz && echo "extension=mongodb.so" > /usr/local/etc/php/conf.d/mongodb.ini
 
 # Install Composer
 ENV COMPOSER_HOME /root/composer
