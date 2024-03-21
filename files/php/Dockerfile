@@ -1,4 +1,4 @@
-FROM php:7.2-fpm
+FROM php:7.3-fpm
 
 # set timezome
 ENV TZ=Asia/Shanghai
@@ -12,7 +12,6 @@ RUN apt-get update && apt-get install -y \
         libpng-dev \
 	&& docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
 	&& docker-php-ext-install -j$(nproc) gd \
-        && docker-php-ext-install zip \
         && docker-php-ext-install bcmath \
         && docker-php-ext-install pdo_mysql \
         && docker-php-ext-install opcache \
@@ -22,7 +21,7 @@ RUN apt-get update && apt-get install -y \
 
 # Copy extensions had downloaded
 COPY ./pkg/redis.tgz /home/redis.tgz
-COPY ./pkg/swoole-4.4.7.tgz /home/swoole.tgz
+COPY ./pkg/swoole-4.8.13.tgz /home/swoole.tgz
 COPY ./pkg/mongodb-1.16.2.tgz /home/mongodb.tgz
 
 # Install PECL extensions (Redis)
