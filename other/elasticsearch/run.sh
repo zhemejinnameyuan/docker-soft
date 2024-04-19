@@ -1,5 +1,1 @@
-docker run -d \
---name elasticsearch \
--p 9200:9200 \
--p 9300:9300 \
--e "discovery.type=single-node" elasticsearch:7.2.0
+docker run -d --rm --name elasticsearch -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" -e "http.cors.enabled=true" -e "http.cors.allow-origin=*" -e "http.cors.allow-headers=X-Requested-With,X-Auth-Token,Content-Type,Content-Length,Authorization" -e "http.cors.allow-credentials=true" docker.elastic.co/elasticsearch/elasticsearch-oss:7.10.2
